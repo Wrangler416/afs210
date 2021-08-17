@@ -3,22 +3,20 @@ def loop1():
     for i in range(20):        
         if (i % 2) == 1:            
             odd_sum += i    
-    return odd_sum
+        return odd_sum
 
 #Sum the odd numbers between 1 and 20    
 
-def recursion1(num, odd_sum = 0):
-    if(num == 0):
-        return 1
-    if(num % 2) == 1:
-        odd_sum += 1 
-    else: 
-        return (num * recursion1(num-1))
+def recursion1(i, odd_sum):
+    if i >= 20:
+        return odd_sum
+    elif (i % 2) == 1:
+         odd_sum += i  
+    return recursion1(i+1, odd_sum)
 
-n = 20   
-print(recursion1(n)) 
-
-
+i = 0   
+odd_sum = 0
+print(recursion1(i, odd_sum)) 
 
 
 #Sum the even numbers between 1 and 20    
@@ -33,25 +31,16 @@ def loop2():
     return even_sum
 
 
-def recursion2(i = 0, even_sum = 0):
-    if(i == 0):
-        return 1
-    if(i % 2) == 0:
-        even_sum += i 
-    else: 
-        return (i * recursion2(i-1))
+def recursion2(i, even_sum):
+    if i >= 20:
+        return even_sum
+    elif(i % 2) == 0:
+        even_sum += i  
+    return recursion2(i+1, even_sum)
 
-n = 20   
-print(recursion2(n))
-
-
-
-
-
-
-
-
-
+i = 0
+even_sum = 0   
+print(recursion2(i, even_sum))
 
 
 #def loop1Rec(num,odd_sum):    
