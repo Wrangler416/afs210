@@ -1,9 +1,16 @@
 class Node:
     # A doubly-linked node.
-    def __init__(self, data=None):
+    def __init__(self, data):
         self.data = data
         self.next = None
         self.prev = None
+        return
+    
+    def hasValue(self, value):
+        if self.data == value:
+            return True
+        else:
+            return False
 
 class DoublyLinkedList:
     # A doubly-linked list.
@@ -26,74 +33,119 @@ class DoublyLinkedList:
     def size(self) -> int:
         return self.count
 
+# Append a node
+    def append(self, data):
+        if self.head is None:
+            new_node = Node(data)
+            new_node.prev = None
+            self.head = new_node
+        else:
+            new_node = Node(data)
+            cur = self.head
+            while cur.next:
+                cur = cur.next
+            cur.next = new_node
+            new_node.prev = cur
+            new_node.next = None
+            
+            self.count += 1
+
 # Add a node at the front of the list
 
-def addAtStart(self, data) -> None:
-        if self.head is not None:
-            new_node = Node(data, None, None)
-            new_node.next = self.head
-            self.head.prev = new_node
+    def addFirst(self, data):
+        if self.head is None:
+            new_node = Node(data)
+            new_node.prev = None
             self.head = new_node
-            self.count += 1
+        else:
+            new_node = Node(data)
+            self.head.prev = new_node
+            new_node.next = self.head
+            self.head = new_node
+            new_node.prev = None
 
 # Add a node at the end of the list
 
-def addAtEnd(self, data) -> None:
+    def addAtEnd(self, data):
         newNode = Node(data)
-        if  (self.head == None):
-            self.head = newNode
-            return
+        if not self.head:
+           self.head = newNode
+           self.tail = newNode
         else: 
             self.tail.next = newNode
             self.tail = newNode
-            self.tail.next = self.head
- 
-def addAtEnd(self, key, data):
-    currentNode = self.head
-    while currentNode: 
-        if currentNode.next is None and currentNode.data ==key:
-            self.append(data)
-            return
-        elif currentNode.data == key:
-            new_node = Node(data)
-            nxt = currentNode.next
-            currentNode.next = new_node
-            new_node.next = nxt
-            new_node.prev = currentNode
-            nxt.prev = new_node
-        currentNode = currentNode.next 
+        self.count += 1
 
 
-def addAtIndex(self, data, index):
+    def addAtIndex(self, data, index):
+        start = self.head
+        for i in range(self.count):
+           if(start.data == data):
+            return i 
+           start = start.next
+        return None
+
         # Add a node to the list at the given index position
         # If index equals to the length of linked list, the node will be appended to the end of linked list
         # If index is greater than the length, the data will not be inserted.
         # This function does not replace the data at the index, but pushes everything else down.
 
-        # Search through the list. Return the index position if data is found, otherwise return -1    
-
-  def indexOf(self, data):
-    start = self.head
-    for i in range(self.count):
-         if(start.data == data):
-            return i 
-    start = start.next
-    return None
+# Search through the list. Return the index position if data is found, otherwise return -1       
 
 
 
-def add(self, data) -> None:
+    def indexOf(self, value):
+        current = self.head
+        position = 0
+       
+        while current is not None:
+            if current.data == value:
+                return position
+
+            current = current.next
+            position += 1
+
+        return -1
+
+
+    def add(self, data) -> None:
         # Append an item to the end of the list
         self.addLast(data)
 
-def clear(self) -> None:
+    def clear(self) -> None:
         # Remove all of the items from the list
         self.head = None
         self.tail = None
         self.count = 0
 
-def deleteAtIndex(self, index) -> None:
-        # Delete the node at the index-th in the linked list, if the index is valid.
+    def addAtIndex(self, newElement, position):
+        newNode = Node(newElement)
+        if(position < 1):
+            print("position needs to be greater than 1")
+        elif (position == 1):
+
+            newNode.next = self.head
+            self.head.prev = newNode
+            self.head = newNode
+        else:
+            temp = self.head
+            for i in range(1, position-1):
+                if(temp != None):
+                    temp = temp.next
+        if(temp !=None):
+            newNode.next = temp.next
+            newNode.prev = temp
+            temp.next = newNode
+
+            if(newNode.next != None):
+                newNode.next.prev = newNode
+        else: 
+            print("previous node is null")
+
+
+# Delete the node at the index-th in the linked list, if the index is valid.
+        
+    def deleteAtIndex(self, index):
 
         if (index > (self.count-1)):
             return
@@ -118,8 +170,8 @@ def deleteAtIndex(self, index) -> None:
 
         return
 
-def delete(self, data) -> None:
-        # Delete a node from the list who's value matches the supplied value
+    def delete(self, data) -> None:
+# Delete a node from the list who's value matches the supplied value
         current = self.head
         prev = self.head
         while current:
@@ -138,7 +190,7 @@ def delete(self, data) -> None:
             prev = current
             current = current.next
 
-def __getitem__(self, index):
+    def __getitem__(self, index):
         if index > self.count - 1:
             raise Exception("Index out of range.")
         current = self.head
@@ -146,7 +198,7 @@ def __getitem__(self, index):
             current = current.next
         return current.data
 
-def __setitem__(self, index, value):
+    def __setitem__(self, index, value):
         if index > self.count - 1:
             raise Exception("Index out of range.")
         current = self.head
@@ -154,18 +206,34 @@ def __setitem__(self, index, value):
             current = current.next
         current.data = value
 
-def __str__(self):
+    def __str__(self):
         myStr = ""
         for node in self.iter():
              myStr += str(node)+ " "
         return myStr
 
+
+    def print_list(self):
+        cur = self.head
+        while cur:
+            print(cur.data)
+            cur = cur.next
+
+
 list = DoublyLinkedList()
-list.append("!")
-list.append("you")
-list.append("with")
-list.append("be")
-list.append("Force")
-list.append("the")
+
 list.append("May")
+list.append("the")
+list.append("force")
+list.append("be")
+list.append("with")
+list.append("you")
+list.append("!")
+
+
+list.indexOf("with")
+
+
+print(list)
+
 
