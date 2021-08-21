@@ -53,10 +53,10 @@ class DoublyLinkedList:
 # Add a node at the front of the list
 
     def addFirst(self, data):
+        new_node = Node(data)
         if self.head is None:
-            new_node = Node(data)
-            new_node.prev = None
             self.head = new_node
+            self.tail = new_node
         else:
             new_node = Node(data)
             self.head.prev = new_node
