@@ -226,8 +226,8 @@ list.append("!")
 print(list)
 print(list.indexOf("with"))
 
-list.addAtIndex("us", 5)
+list[5] = "us"
 print(list)
 
-list.addAtIndex("all", 6)
+list.addAtIndex("all", 7)
 print(list)

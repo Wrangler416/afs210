@@ -9,7 +9,7 @@ class Stack:
         self.items.insert(0, item)
 
     def pop(self):
-        return self.items.pop(0)
+        return self.items.pop()
 
     def peek(self):
         return self.items[0]
@@ -17,24 +17,15 @@ class Stack:
     def size(self):
         return len(self.items)
     
-    def isPalindrome(s):
-        return s == s[::-1]
-
-    s = "racecar"
-    num1 = isPalindrome(s)
-    if num1:
-        print("true")
-    else:
-        print("false")
-
+    
 class Queue: 
-    def _init_(self):
+    def __init__(self):
         self.items = []
 
     def enqueue(self, item):
         self.items.insert(0, item)
     
-    def dequeue(self, item):
+    def dequeue(self):
         return self.items.pop()
 
     def size(self):
@@ -46,12 +37,40 @@ class Queue:
     def peek(self):
         return self.items[0]
 
-   
+
+myQueue = Queue()
 myStack = Stack()
 
-myStack.push("e")
-myStack.push("stuff")
-print(myStack.pop())
-print(myStack.size())
-print(myStack.peek())
+s = "racecar"  
+
+def isPalindrome(s):
+ for i in s:
+    myStack.push(i)
+            
+ reversed = ""
+ while not myStack.isEmpty():
+     reversed = reversed + myStack.pop()
+            
+ if s == reversed:
+        print("true")
+ else: 
+        print("false")
+
+
+
+str = "hello"
+
+def isPalindromes(str):
+    for i in str:
+        myQueue.enqueue(i)
+    back = ""
+    while not myQueue.isEmpty():
+        back = back + myQueue.dequeue()
+    
+    if str == back:
+        print("true")
+    else:
+        print("false")
+
+
 
