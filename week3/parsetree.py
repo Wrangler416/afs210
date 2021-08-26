@@ -38,14 +38,14 @@ def buildParseTree(exp):
            currentNode.left = newNode
            myStack.push(currentNode.left)
            currentNode = currentNode.left
-
+        #if current token is ( then add a new node as the left child and then descend to that child
         elif expression == ')':
             currentNode = myStack.pop()
-               # go up to the parent of the currentNode
+        # go up to the parent of the currentNode
 
         elif expression in '+-*/':
-            currentNode == self.val(expression)
-            currentNode.right
+            currentNode == root.val(expression)
+            currentNode.right = newNode
             myStack.push(currentNode.right)
             currentNode = currentNode.right
 
@@ -54,9 +54,9 @@ def buildParseTree(exp):
             # then descend to that right child
 
         elif expression not in '+-*/':
-            currentNode == self.val(int(expression))
-            self.parent = myStack.pop()
-            currentNode = parent
+            currentNode == root.val(int(expression))
+            currentNode.parent = myStack.pop()
+            currentNode = currentNode.parent
 
             # expression is a number
             # set value of the currentNode to that number
@@ -92,3 +92,5 @@ def preOrder(node):
 buildParseTree("( ( 11 * 2 ) + ( 10 - 2 ) )")
 print_tree.print_tree(root)
 inOrder(root)  
+postOrder(root)
+preOrder(root)
