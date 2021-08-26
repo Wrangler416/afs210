@@ -61,7 +61,7 @@ class DoublyLinkedList:
             self.head.prev = new_node
             new_node.next = self.head
             self.head = new_node
-
+        self.count += 1
 
 # Add a node at the end of the list
 
@@ -79,12 +79,17 @@ class DoublyLinkedList:
 
     def addAtIndex(self, data, index):
         new_node = Node(data)
-        if(index < 1):
-            print("index needs to be greater than 1")
-        elif (index == 1):
-            self.head.prev = new_node
-            new_node.next = self.head
-            self.head = new_node
+        if(index < 0):
+            print("index needs to be greater than 0")
+        elif (index == 0):
+            self.addFirst(data)
+            return
+        elif (index > self.count):
+            return
+        elif (index == self.count):
+            self.addAtEnd(data)
+            return
+
         else:
             current = self.head
             for i in range(1, index-1):
@@ -221,13 +226,6 @@ list.append("you")
 list.append("!")
 
 
-
-
-print(list)
-print(list.indexOf("with"))
-
-list[5] = "us"
 print(list)
 
-list.addAtIndex("all", 7)
-print(list)
+

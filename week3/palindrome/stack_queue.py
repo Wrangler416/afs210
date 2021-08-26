@@ -17,7 +17,7 @@ class Stack:
     def size(self):
         return len(self.items)
     
-    
+
 class Queue: 
     def __init__(self):
         self.items = []
@@ -41,36 +41,19 @@ class Queue:
 myQueue = Queue()
 myStack = Stack()
 
-s = "racecar"  
+s = "racecar"
 
 def isPalindrome(s):
- for i in s:
-    myStack.push(i)
+    for i in s:
+        myStack.push(i)
             
- reversed = ""
- while not myStack.isEmpty():
-     reversed = reversed + myStack.pop()
+        reversed = ""
+        while not myStack.isEmpty():
+         reversed += myStack.pop()
             
- if s == reversed:
-        print("true")
- else: 
-        print("false")
-
-
-
-str = "hello"
-
-def isPalindromes(str):
-    for i in str:
-        myQueue.enqueue(i)
-    back = ""
-    while not myQueue.isEmpty():
-        back = back + myQueue.dequeue()
-    
-    if str == back:
-        print("true")
-    else:
-        print("false")
-
+        if s == reversed:
+          print("true")
+        else: 
+          print("false")
 
 

@@ -35,20 +35,19 @@ def buildParseTree(exp):
         newNode = Node("")
    
         if expression == '(':
-           currentNode.left("") = newNode
-           myStack.push(currentNode)
-           currentNode = currentNode.getLeftChild()
+           currentNode.left = newNode
+           myStack.push(currentNode.left)
+           currentNode = currentNode.left
 
-        
         elif expression == ')':
             currentNode = myStack.pop()
                # go up to the parent of the currentNode
 
         elif expression in '+-*/':
             currentNode == self.val(expression)
-            currentNode.right("")
-            myStack.push(currentNode)
-            currentNode = currentNode.getRightChild()
+            currentNode.right
+            myStack.push(currentNode.right)
+            currentNode = currentNode.right
 
             # set value of the currentNode to that operator
             # create a node and make it the right child of the currentNode
