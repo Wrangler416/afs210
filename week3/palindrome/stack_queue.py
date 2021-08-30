@@ -6,7 +6,7 @@ class Stack:
         return self.items == []
 
     def push(self, item):
-        self.items.insert(0, item)
+        self.items.append(item)
 
     def pop(self):
         return self.items.pop()
@@ -41,15 +41,26 @@ class Queue:
 myQueue = Queue()
 myStack = Stack()
 
-def isPalindrome(word):
-    if len(word) < 2: return True
-    if word[0] != word[-1]: return False
-    return isPalindrome(word[1:-1])
+# """ def isPalindrome(word):
+#     if len(word) < 2: return True
+#     if word[0] != word[-1]: return False
+#     return isPalindrome(word[1:-1])
 
-    return True
+#     return True """
 
-print(isPalindrome("racecar"))
-print(isPalindrome("noon"))
-print(isPalindrome("python"))
-print(isPalindrome("madam"))
 
+
+def isPalindrome(str):
+    str = myStack.push("noon")
+    rev_str = myStack.pop()
+    if str == rev_str:
+        print(True)
+    else: 
+        print(False)
+   
+print(isPalindrome(str))  
+   
+   # if myStack.pop() == myQueue.dequeue():
+    
+
+      

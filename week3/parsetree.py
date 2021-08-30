@@ -12,7 +12,7 @@ class Node:
             if value < self.value:
                 if self.left is None:
                     self.left = Node(value)
-
+    
 class Stack:
     def __init__(self):
         self.items = []
@@ -23,6 +23,9 @@ class Stack:
     def pop(self):
         return self.items.pop(0)
 
+    def size(self):
+        return len(self.items)
+        
 root = Node("")
 
 def buildParseTree(exp):
@@ -36,25 +39,25 @@ def buildParseTree(exp):
    
         if expression == '(':
            currentNode.left = newNode
-           myStack.push(currentNode.left)
+           myStack.push(currentNode)
            currentNode = currentNode.left
         #if current token is ( then add a new node as the left child and then descend to that child
         elif expression == ')':
-            currentNode = myStack.pop()
+            if(myStack.size() > 0):
+                currentNode = myStack.pop()
         # go up to the parent of the currentNode
 
         elif expression in '+-*/':
-            currentNode == root.val(expression)
+            currentNode.val = (expression)
             currentNode.right = newNode
-            myStack.push(currentNode.right)
+            myStack.push(currentNode)
             currentNode = currentNode.right
-
             # set value of the currentNode to that operator
             # create a node and make it the right child of the currentNode
             # then descend to that right child
 
         elif expression not in '+-*/':
-            currentNode == root.val(int(expression))
+            currentNode.val = eval(expression)
             currentNode.parent = myStack.pop()
             currentNode = currentNode.parent
 

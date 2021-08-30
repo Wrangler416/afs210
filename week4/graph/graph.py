@@ -1,10 +1,31 @@
-
-graph = {
+# adjacency list / directed graph
+adjList = {
     "a" : ["c", "b", "d", "e", "f"],
     "b" : ["c", "e"],
-    "c" : []
-
+    "c" : ["d"],
+    "d" : ["e"],
+    "e" : ["f"],
+    "f" : ["h", "g"],
+    "g" : ["f", "h"],
+    "h" : ["g", "f"],
+    "i" : []
 }
+# weight list
+adjWeight = {
+    "a": {"c": 1, "b": 2, "d": 3, "e": 9, "f": 20},
+    "b": {"c": 4, "e": 3},
+    "c": {"d": 8},
+    "d": {"e": 7},
+    "e": {"f": 5},
+    "f": {"h": 2, "g": 2},
+    "g": {"f": 1, "h": 6},
+    "h": {"g": 8, "f": 9}
+    }
+
+class Graph():
+    def __init__(self):
+        self.edges = adjList
+        self.weights = {}
 
 
 # finds shortest path between 2 nodes of a graph using BFS
@@ -79,4 +100,12 @@ def dijsktra(graph, initial, end):
     # Reverse path
     path = path[::-1]
     return path
+
+graph = Graph()
+# fastest path
+print(breadth_first_search(graph, "a", "h"))
+
+# cheapest path
+print(dijsktra(graph, "a", "h"))
+
 
