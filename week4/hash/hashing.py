@@ -10,22 +10,30 @@ class HashTable:
         self.data = [None] * self.size
         self.count = 0
 
-def hashfunction(self,key):
-        mult = 1
+    def hashFunction(self,key):
+        keystr = str(key)
         hashval = 0
-        for ch in key:
-            hashval += mult * ord(ch)
-            mult += 1
-        return hashval % self.size
+        for ch in keystr:
+            hashval += ord(ch)
+        return (hashval* len(keystr)) % self.size
+    
+    def rehashFunction(self,key):
+        keystr = str(key)
+        hashval = 0
+        counter = 0
+        for ch in keystr:
+            counter += 1
+            hashval += ord(ch)*counter
+        return (hashval* len(keystr)) % self.size
+# Insert your secondary hashing function code
+
+    def perfectHash(self, key, size):
 
     # Insert your hashing function code
 
-def rehash(self,key):
-        return (firsthash+1) % self.size
+     
 
-        # Insert your secondary hashing function code
-
-def put(self,key,data):
+     def put(self,key,data):
         item = HashItem(key, data)
         h = self.hashFunction(key)
         while self.slots[h] is not None:
@@ -38,7 +46,7 @@ def put(self,key,data):
                 self.slots[h] = item
 
         # Insert your code here to store key and data 
-def get(self,key):
+    def get(self,key):
         h = self.hashFunction(key)
         
         while self.slots[h] is not None:
@@ -49,23 +57,32 @@ def get(self,key):
             return None
         # Insert your code here to get data by key
 
-def __getitem__ (self,key):
+    def __getitem__ (self,key):
         return self.get(key)
 
-def __setitem__ (self,key,data):
+    def __setitem__ (self,key,data):
         self.put(key,data)
 
 
 H = HashTable()
-H[69] = 'A'
-H[66] = 'B'
-H[80] = 'C'
-H[35] = 'D'
-H[18] = 'E'
-H[52] = 'F'
-H[89] = 'G'
-H[70] = 'H'
-H[12] = 'I'
+#H[69] = 'A'
+#H[66] = 'B'
+#H[80] = 'C'
+#H[35] = 'D'
+#H[18] = 'E'
+#H[52] = 'F'
+#H[89] = 'G'
+#H[70] = 'H'
+#H[12] = 'I'
+
+print(H.hashFunction("John Smith"))
+print(H.hashFunction("George Washington"))
+print(H.hashFunction("Jane Doe"))
+print(H.hashFunction("Alexander Hamilton"))
+
+
+print(H.hashFunction(5))
+
 
 # Store remaining input data
 
@@ -74,6 +91,4 @@ H[12] = 'I'
 # print the data values
 
 # print the value for key 52
-for key in ('F'):
-    p = H.get(key)
-    print(p)
+

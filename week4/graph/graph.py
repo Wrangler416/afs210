@@ -21,13 +21,6 @@ adjWeight = {
     "g": {"f": 1, "h": 6},
     "h": {"g": 8, "f": 9}
     }
-
-class Graph():
-    def __init__(self):
-        self.edges = adjList
-        self.weights = {}
-
-
 # finds shortest path between 2 nodes of a graph using BFS
 def breadth_first_search(graph, start, goal):
     # keep track of explored nodes
@@ -70,7 +63,7 @@ def dijsktra(graph, initial, end):
     shortest_paths = {initial: (None, 0)}
     current_node = initial
     visited = set()
-    
+
     while current_node != end:
         visited.add(current_node)
         destinations = graph[current_node]
@@ -99,13 +92,15 @@ def dijsktra(graph, initial, end):
         current_node = next_node
     # Reverse path
     path = path[::-1]
-    return path
+    return path, weight
 
-graph = Graph()
 # fastest path
-print(breadth_first_search(graph, "a", "h"))
+print("Shortest Path between A and H is:")
+print(breadth_first_search(adjWeight, "a", "h"))
 
 # cheapest path
-print(dijsktra(graph, "a", "h"))
+print("Cheapest path between A and H is:")
+print(dijsktra(adjWeight, "a", "h"))
 
-
+print("The cost of going between A and H is:")
+print(dijsktra(adjWeight, "a", "h" ))
