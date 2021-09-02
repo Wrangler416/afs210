@@ -12,8 +12,9 @@ def mergeSort(nlist):
 
         mergeSort(lefthalf)
         mergeSort(righthalf)
-        
     print("Merging ",nlist)
+    return merge(nlist, lefthalf, righthalf)
+    
 
 # insert your code to complete the mergeSort function
     
