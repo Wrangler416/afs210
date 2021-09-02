@@ -6,13 +6,13 @@ class HashTable:
         self.count = 0
 
     def hashFunction(self,key):
-        keystr = str(key)
-        hashval = 0
-        for ch in keystr:
-            hashval += ord(ch)
-        return hashval % self.size
+        #keystr = str(key)
+        #hashval = 0
+        #for ch in keystr:
+         #   hashval += ord(ch)
+        #return hashval % self.size
 
-        #return key % self.size
+        return key % self.size
 
     def rehashFunction(self,key):
         return key // self.size
@@ -36,8 +36,8 @@ class HashTable:
 
 # Insert your code here to get data by key
 
-    def __get__(self,key,data):
-        h = self.hashFunction(key, data)
+    def get(self,key):
+        h = self.hashFunction(key)
         if self.slots[h] == key:
              return key
 
