@@ -6,12 +6,6 @@ class HashTable:
         self.count = 0
 
     def hashFunction(self,key):
-        #keystr = str(key)
-        #hashval = 0
-        #for ch in keystr:
-         #   hashval += ord(ch)
-        #return hashval % self.size
-
         return key % self.size
 
     def rehashFunction(self,key):
@@ -38,9 +32,20 @@ class HashTable:
 
     def get(self,key):
         h = self.hashFunction(key)
-        if self.slots[h] == key:
-             return key
-
+        data = None
+        stop = False
+        found = False
+        place = h
+        while self.slots[place] is not None and not found and not stop:
+            if self.slots[place] == key:
+                found = True
+                data = self.data[place]
+            else:
+                place = self.rehashFunction(place)
+                if place == h:
+                    stop = True
+        return data
+            
 # loop through the table looking for key when found return key
 
 
@@ -63,7 +68,9 @@ H[12] = 'I'
 
 # print the slot values
 print(H.slots)
-# print the data values
-print(H.get("B"))
-# print the value for key 52
 
+# print the data values
+print(H.data)
+
+# print the value for key 52
+print(H.get(52))
