@@ -1,8 +1,3 @@
-class HashItem: 
-    def __init__(self, key, value): 
-            self.key = key 
-            self.value = value 
-
 class HashTable:
     def __init__(self):
         self.size = 10
@@ -15,80 +10,60 @@ class HashTable:
         hashval = 0
         for ch in keystr:
             hashval += ord(ch)
-        return (hashval* len(keystr)) % self.size
-    
+        return hashval % self.size
+
+        #return key % self.size
+
     def rehashFunction(self,key):
-        keystr = str(key)
-        hashval = 0
-        counter = 0
-        for ch in keystr:
-            counter += 1
-            hashval += ord(ch)*counter
-        return (hashval* len(keystr)) % self.size
-# Insert your secondary hashing function code
-
-    def perfectHash(self, key, size):
-
+        return key // self.size
+    
+    # Insert your secondary hashing function code
     # Insert your hashing function code
 
-     
-
-     def put(self,key,data):
-        item = HashItem(key, data)
+    def put(self,key,data):
         h = self.hashFunction(key)
-        while self.slots[h] is not None:
-            if self.slots[h].key is key:
-                break
-            h = (h+1) % self.size
 
-            if self.slots[h] is None:
-                self.count += 1
-                self.slots[h] = item
+        if self.slots[h] == None:
+            self.data[h] = data
+            self.slots[h] = key
+        else:
+            h = self.rehashFunction(key)
+            if self.slots[h] == None:
+                self.data[h] = data
+                self.slots[h] = key
+            else:
+                print("collision")
 
-        # Insert your code here to store key and data 
-    def get(self,key):
-        h = self.hashFunction(key)
-        
-        while self.slots[h] is not None:
-            if self.slots[h].key is key:
-                return self.slots[h].value
-            h = (h+1) % self.size
+# Insert your code here to get data by key
 
-            return None
-        # Insert your code here to get data by key
+    def __get__(self,key,data):
+        h = self.hashFunction(key, data)
+        if self.slots[h] == key:
+             return key
 
-    def __getitem__ (self,key):
-        return self.get(key)
+# loop through the table looking for key when found return key
+
 
     def __setitem__ (self,key,data):
         self.put(key,data)
 
 
 H = HashTable()
-#H[69] = 'A'
-#H[66] = 'B'
-#H[80] = 'C'
-#H[35] = 'D'
-#H[18] = 'E'
-#H[52] = 'F'
-#H[89] = 'G'
-#H[70] = 'H'
-#H[12] = 'I'
-
-print(H.hashFunction("John Smith"))
-print(H.hashFunction("George Washington"))
-print(H.hashFunction("Jane Doe"))
-print(H.hashFunction("Alexander Hamilton"))
-
-
-print(H.hashFunction(5))
-
+H[69] = 'A'
+H[66] = 'B'
+H[80] = 'C'
+H[35] = 'D'
+H[18] = 'E'
+H[52] = 'F'
+H[89] = 'G'
+H[70] = 'H'
+H[12] = 'I'
 
 # Store remaining input data
 
 # print the slot values
-
+print(H.slots)
 # print the data values
-
+print(H.get("B"))
 # print the value for key 52
 
