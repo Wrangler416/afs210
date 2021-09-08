@@ -3,7 +3,7 @@ n = len(list)
 # I used the fisher yates algo which is O(n) time complexity
 # this algo starts from the last list item and swaps it with
 # a randomly assigned index position and keeps doing so until all items are swapped
-# it is O(n) because our random number generator generates in O(1) time it is linear time
+# it is O(n) because it is swapping in place, linear time
 import random
 
 def shuffle(list, n):
