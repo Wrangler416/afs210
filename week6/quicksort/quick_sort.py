@@ -8,10 +8,10 @@ def quick_sort(a_list, start, end):
 
     # Call the partition helper function to split the list into two sections ..divided between a pivot point
 
-    pivot = partitionRandom(a_list, start, end)
+    #pivot = partitionRandom(a_list, start, end)
     #pivot = partitionStart(a_list, start, end)
     #pivot = partitionEnd(a_list, start, end)
-    #pivot = partitionMiddle(a_list, start, end)
+    pivot = partitionMiddle(a_list, start, end)
 
     quick_sort(a_list, start, pivot-1)
     quick_sort(a_list, pivot+1, end)
@@ -25,27 +25,15 @@ def partitionStart(a_list, start, end):
    return partition(a_list, start, end)
 
 def partitionEnd(a_list, start, end):
-    x = (start-1)
-    pivotEnd = a_list[end]
-
-    for i in range(start, end):
-        if a_list[i] <= pivotEnd:
-            x = x+1
-            a_list[x], a_list[i] = a_list[i], a_list[x]
-
-    a_list[x+1], a_list[end] = a_list[end], a_list[x+1]
-
-    return (x+1)
+    a_list[start] , a_list[end] = a_list[end], a_list[start]
+    return partition(a_list, start, end)
 
 def partitionMiddle(a_list, start, end):
     if len(a_list) <= 1:
         return a_list
     pivot = a_list[len(a_list) // 2]
-    start = [x for x in a_list if x < pivot]
-    mid = [x for x in a_list if x == pivot]
-    end = [x for x in a_list if x > pivot]
-
-    return partitionMiddle(start) + mid + partitionMiddle(end)
+    a_list[start] , a_list[pivot] = a_list[pivot], a_list[start]
+    return partition(a_list, start, end)
 
 def partition(a_list, start, end):
 
