@@ -165,8 +165,10 @@ class DoublyLinkedList:
 
         return
 
-    def delete(self, data) -> None:
+
 # Delete a node from the list who's value matches the supplied value
+
+    def delete(self, data) -> None:
         current = self.head
         prev = self.head
         while current:

@@ -1,8 +1,9 @@
-
 class Song:
     def __init__(self,title,artist):
         self.title = title
         self.artist = artist
+        self.next = None
+        self.prev = None
 
     def getTitle(self):
         return self.title
@@ -25,6 +26,63 @@ class Song:
     def __gt__(self, other):
         return ((self.title, self.artist) < (other.title, other.artist))
         
+class LinkedList:
+    def __init__(self):
+        self.tail = None
+        self.head = None
+        self.count = 0
+
+    def appendSong(self, title, artist):
+        if self.head is None:
+            new_node = Song(title, artist)
+            new_node.prev = None
+            self.head = new_node
+        else:
+            new_node = Song(title, artist)
+            cur = self.head
+            while cur.next:
+                cur = cur.next
+            cur.next = new_node
+            new_node.prev = cur
+            new_node.next = None
+            
+            self.count += 1
+
+    def deleteSong(self, title, artist):
+        current = self.head
+        prev = self.head
+        while current:
+            if current.title == title and current.artist == artist:
+                if current == self.tail:
+                    prev.next = None
+                    self.tail = prev
+                elif current == self.head:
+                    current.next.prev = None
+                    self.head = current.next
+                else:
+                    prev.next = current.next
+                    current.next = prev
+                self.count -= 1
+                return
+            prev = current
+            current = current.next
+
+    def __getitem__(self, index):
+        if index > self.count - 1:
+            raise Exception("Index out of range.")
+        current = self.head
+        for n in range(index):
+            current = current.next
+        return current.data
+
+
+
+
+
+
+
+
+
 
 
 def menu():
@@ -46,6 +104,9 @@ while True:
     choice = int(input())
 
     if choice == 1:
+        title = input("Enter an song title: ")
+        artist = input("Enter an artist name: ")
+        #appendSong(title, artist)
         # Add code to prompt user for Song Title and Artist Name
         # Add song to playlist
         print("New Song Added to Playlist")
