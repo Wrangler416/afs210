@@ -23,17 +23,17 @@ print(lin_search(sortedList, 25))
 
 
 
-binary search only works on ordered
+#binary search only works on ordered
 
-binary search on sorted list
+#binary search on sorted list
 
-when the array is 1  = base case
-use Recursion 
+##when the array is 1  = base case
+#use Recursion 
 
-pass in list and target number
-keep calling function 
+#pass in list and target number
+#keep calling function 
 
-move towards base case
+#move towards base case
 
-dividing list 
+#dividing list 
 
