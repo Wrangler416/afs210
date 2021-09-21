@@ -79,8 +79,6 @@ class Playlist:
          newNode.next = self.head
          self.head = newNode
 
-#reverses the playlist
-
 
 #delete song by value
      def deleteSong(self, title, artist):
@@ -157,8 +155,9 @@ class Playlist:
              temp.next = prev 
              temp = next
              return temp 
-
-     def reverseList(self):
+             
+#reverses the playlist
+     def shuff(self):
          prev = None
          temp = self.head
          while (temp is not None):
@@ -223,6 +222,12 @@ def menu():
   print("0. Exit")
   print(47 * "-")
 
+list.addSong("Hells Bells", "ACDC")
+list.addSong("Fast Car", "Tracy Chapman")
+list.addSong("Wonderful Tonight", "Eric Clapton")
+list.addSong("Sweet Home Alabama", "Lynyard Skynard")
+list.addSong("Dancing Queen", "ABBA")
+list.addSong("Wonderwall", "Oasis")
 
 while True:
     menu()
@@ -265,7 +270,7 @@ while True:
         # Randomly shuffle the playlist and play the first song
         # Display song name that is now playing
         print("Shuffling....")  
-        print(list.reverseList())   
+        print(list.shuff())   
 
     elif choice == 7:
         print("Currently playing: ", end=" ")  
@@ -282,12 +287,6 @@ while True:
         break
 
 
-list.addSong("Hells Bells", "ACDC")
-list.addSong("Fast Car", "Tracy Chapman")
-list.addSong("Wonderful Tonight", "Eric Clapton")
-list.addSong("Sweet Home Alabama", "Lynyard Skynard")
-list.addSong("Dancing Queen", "ABBA")
-list.addSong("Wonderwall", "Oasis")
 
 
 
